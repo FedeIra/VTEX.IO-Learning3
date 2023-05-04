@@ -3,6 +3,7 @@ import { LRUCache, method, Service } from '@vtex/api'
 
 import { Clients } from './clients'
 import { status } from './middlewares/status'
+// import { validate } from './middlewares/validate'
 
 const TIMEOUT_MS = 800
 
@@ -43,8 +44,9 @@ declare global {
 export default new Service({
   clients,
   routes: {
+    // `status` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
     status: method({
-      POST: [ status],
+      POST: [/* validate,  */status],
     }),
   },
 })
